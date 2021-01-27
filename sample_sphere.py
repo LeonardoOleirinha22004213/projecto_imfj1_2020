@@ -65,15 +65,58 @@ def main():
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     return
+                #ESQUERDA E DIREITA (EIXO Y)
+                elif event.key == pygame.K_LEFT:
+                    ax = (axis * math.radians(angle) * delta_time)
+
+                    q = Quaternion.AngleAxis(Vector3(0, 1, 0), math.radians(angle) * delta_time)
+                    obj1.rotation = q * obj1.rotation
+                elif event.key == pygame.K_RIGHT:
+                    ax = (axis * math.radians(angle) * delta_time)
+
+                    q = Quaternion.AngleAxis(Vector3(0, -1, 0), math.radians(angle) * delta_time)
+                    obj1.rotation = q * obj1.rotation
+                #CIMA E BAIXO (EIXO X)
+                elif event.key == pygame.K_UP:
+                    ax = (axis * math.radians(angle) * delta_time)
+
+                    q = Quaternion.AngleAxis(Vector3(1, 0, 0), math.radians(angle) * delta_time)
+                    obj1.rotation = q * obj1.rotation
+                #PgUP PgDOWN (EIXO Z)
+                elif event.key == pygame.K_PAGEUP:
+                    ax = (axis * math.radians(angle) * delta_time)
+
+                    q = Quaternion.AngleAxis(Vector3(0, 0, 1), math.radians(angle) * delta_time)
+                    obj1.rotation = q * obj1.rotation
+                elif event.key == pygame.K_PAGEDOWN:
+                    ax = (axis * math.radians(angle) * delta_time)
+
+                    q = Quaternion.AngleAxis(Vector3(0, 0, -1), math.radians(angle) * delta_time)
+                    obj1.rotation = q * obj1.rotation
+                #W e S (NORTE E SUL)
+                elif event.key == pygame.K_w:
+                    obj1.position += Vector3(0, 1, 0)
+                elif event.key == pygame.K_s:
+                    obj1.position += Vector3(0, -1, 0)
+                #A e D (OESTE E ESTE)
+                elif event.key == pygame.K_a:
+                    obj1.position += Vector3(1, 0, 0)
+                elif event.key == pygame.K_d:
+                    obj1.position += Vector3(-1, 0, 0)
+                #Q e E (FRENTE E TRAS)
+                elif event.key == pygame.K_q:
+                    obj1.position += Vector3(0, 0, 1)
+                elif event.key == pygame.K_e:
+                    obj1.position += Vector3(0, 0, -1)
 
         # Clears the screen with a very dark blue (0, 0, 20)
         screen.fill((0, 0, 0))
 
         # Rotates the object, considering the time passed (not linked to frame rate)
-        ax = (axis * math.radians(angle) * delta_time)
+        #ax = (axis * math.radians(angle) * delta_time)
 
-        q = Quaternion.AngleAxis(axis, math.radians(angle) * delta_time)
-        obj1.rotation = q * obj1.rotation
+        #q = Quaternion.AngleAxis(axis, math.radians(angle) * delta_time)
+        #obj1.rotation = q * obj1.rotation
 
         scene.render(screen)
 
